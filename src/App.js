@@ -13,10 +13,14 @@ class App extends Component {
         <header className="App-header">
           REACT MASTERMIND~!
         </header>
-        <GameBoard />
-        <ColorPicker />
-        <GameTimer />
-        <NewGameButton />
+        <div className="flex-container-row">
+          <GameBoard />
+          <div className="flex-container-column">
+            <ColorPicker />
+            <GameTimer />
+            <NewGameButton />
+          </div>
+        </div>
         <Footer />
       </div>
     );

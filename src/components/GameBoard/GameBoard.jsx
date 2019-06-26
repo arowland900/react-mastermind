@@ -2,10 +2,12 @@ import React from 'react'
 import GuessRow from './GuessRow'
 
 const GameBoard = (props) => (
-    <div className='component'>
+    <div className='component flex-container-row'>
         GameBoard
-        <GuessRow num={1} />
-        <GuessRow num={2} />
+        <div className='flex-container-column'>
+            <GuessRow num={1} />
+            <GuessRow num={2} />
+        </div>
     </div>
 );
 

@@ -17,3 +17,13 @@ code {
   margin: 4px;
   padding: 4px;
 }
+
+.flex-container-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-container-column {
+  display: flex;
+  flex-direction: column;
+}

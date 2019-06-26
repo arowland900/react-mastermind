@@ -3,7 +3,7 @@ import GuessScore from './GuessScore'
 import GuessPegs from './GuessPegs'
 
 const GuessRow = (props) => (
-    <div className='component'>
+    <div className='component flex-container-row'>
         GuessRow {props.num}
         <GuessPegs />
         <GuessScore />
