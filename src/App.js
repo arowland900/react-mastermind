@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import GameBoard from './components/GameBoard/GameBoard'
 
 class App extends React.Component {
   render() {
@@ -10,6 +11,7 @@ class App extends React.Component {
         <header className="App-header">
           REACT MASTERMIND~!
         </header>
+        <GameBoard />
       </div>
     );
   }
