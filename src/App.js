@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import GameBoard from './components/GameBoard/GameBoard'
+import ColorPicker from './components/ColorPicker/ColorPicker'
 
 class App extends React.Component {
   render() {
@@ -12,6 +13,7 @@ class App extends React.Component {
           REACT MASTERMIND~!
         </header>
         <GameBoard />
+        <ColorPicker />
       </div>
     );
   }
