@@ -14,8 +14,18 @@ class App extends Component {
 		super();
 		this.state = {
 			selColorIdx: 0,
-			guesses: [],
+			guesses: [this.getNewGuess(), this.getNewGuess()],
 			code: this.generateCode()
+		}
+	};
+	getNewGuess(){
+		return {
+			// code: [null, null, null, null],
+			code: [0, 1, 2, 3],
+			score: {
+				perfect: 0,
+				almost: 0
+			}
 		}
 	};
 	generateCode() {
@@ -36,9 +46,9 @@ class App extends Component {
 					REACT MASTERMIND~!
        			 </header>
 				<div className="flex-container">
-					<GameBoard />
+					<GameBoard colors={colors} guesses={this.state.guesses} />
 					<div>
-						<ColorPicker colors={colors} />
+						<ColorPicker colors={colors} selColorIdx={this.state.selColorIdx} />
 						<GameTimer />
 						<NewGameButton />
 					</div>

@@ -5,6 +5,7 @@ const ColorPicker = (props) => (
         {props.colors.map(c => 
             <button key={c}>{c}</button>
         )}
+        <p>current color: {props.selColorIdx}</p>
     </div>
 );
 

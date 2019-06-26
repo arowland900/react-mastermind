@@ -3,10 +3,15 @@ import GuessRow from './GuessRow'
 
 const GameBoard = (props) => (
     <div className='component'>
-            GameBoard
-            <GuessRow num={1} />
-            <GuessRow num={2} />
-        
+        {props.guesses.map((g,i)=>
+            <GuessRow 
+                guess={g} 
+                colors={props.colors} 
+                row={i}
+                currGuess={i === (props.guesses.length -1)}
+                key={i} 
+            />
+        )} 
     </div>
 );
 
