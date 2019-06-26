@@ -13,9 +13,9 @@ class App extends Component {
         <header className="App-header">
           REACT MASTERMIND~!
         </header>
-        <div className="flex-container-row">
+        <div className="flex-container">
           <GameBoard />
-          <div className="flex-container-column">
+          <div>
             <ColorPicker />
             <GameTimer />
             <NewGameButton />
