@@ -1,59 +1,69 @@
 import React, { Component } from 'react';
 import './App.css';
-import GameBoard from './components/GameBoard/GameBoard'
-import ColorPicker from './components/ColorPicker/ColorPicker'
-import GameTimer from './components/GameTimer/GameTimer'
-import NewGameButton from './components/NewGameButton/NewGameButton'
-import Footer from './components/Footer/Footer'
+import GameBoard from './components/GameBoard/GameBoard';
+import ColorPicker from './components/ColorPicker/ColorPicker';
+import GameTimer from './components/GameTimer/GameTimer';
+import NewGameButton from './components/NewGameButton/NewGameButton';
 
-const colors = ['blue', 'green', 'red', 'yellow']
-
+const colors = ['#7CCCE5', '#FDE47F', '#E04644', '#B576AD'];
 
 class App extends Component {
 	constructor() {
 		super();
 		this.state = {
 			selColorIdx: 0,
-			guesses: [this.getNewGuess(), this.getNewGuess()],
-			code: this.generateCode()
-		}
-	};
-	getNewGuess(){
+			guesses: [this.getNewGuess()],
+			code: this.genCode()
+		};
+	}
+
+	getNewGuess() {
 		return {
-			// code: [null, null, null, null],
-			code: [0, 1, 2, 3],
+			code: [null, null, null, null],
 			score: {
 				perfect: 0,
 				almost: 0
 			}
-		}
-	};
-	generateCode() {
-		return new Array(4).fill().map(() => Math.floor(Math.random() * 4));
-	};
+		};
+	}
+
+	genCode() {
+		return new Array(4).fill().map(dummy => Math.floor(Math.random() * 4));
+	}
+
+	getWinTries() {
+		// if winner, return num guesses, otherwise 0 (no winner)
+		let lastGuess = this.state.guesses.length - 1;
+		return this.state.guesses[lastGuess].score.perfect === 4 ? lastGuess + 1 : 0;
+	}
+
+	handleColorSelection = (colorIdx) => {
+		this.setState({ selColorIdx: colorIdx });
+	}
+
 	render() {
+		let winTries = this.getWinTries();
 		return (
 			<div className="App">
-				<button onClick={() => this.setState((state) => {
-					return {
-						selColorIdx: ++state.selColorIdx % 4
-					};
-				})}>
-					Next Color
-				</button>
-				Selected Color: {colors[this.state.selColorIdx]}
-				<header className="App-header">
-					REACT MASTERMIND~!
-       			 </header>
-				<div className="flex-container">
-					<GameBoard colors={colors} guesses={this.state.guesses} />
-					<div>
-						<ColorPicker colors={colors} selColorIdx={this.state.selColorIdx} />
+				<header className='App-header-footer'>R E A C T &nbsp;&nbsp;&nbsp;  M A S T E R M I N D</header>
+				<div className="flex-h align-flex-end">
+					<GameBoard
+						colors={colors}
+						guesses={this.state.guesses}
+					/>
+					<div className='App-controls'>
+						<ColorPicker
+							colors={colors}
+							selColorIdx={this.state.selColorIdx}
+							handleColorSelection={this.handleColorSelection}
+						/>
 						<GameTimer />
 						<NewGameButton />
 					</div>
 				</div>
-				<Footer />
+				<footer className='App-header-footer'>
+					{(winTries ? `You Won in ${winTries} Guesses!` : 'Good Luck!')}
+				</footer>
 			</div>
 		);
 	}
